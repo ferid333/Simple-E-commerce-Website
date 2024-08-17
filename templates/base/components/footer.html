@@ -1,0 +1,74 @@
+<div class="bg-dark py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3 class="text-light">Features of Product</h3>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="">T-Shirt</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">Cap</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">Bag</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="ebulten" class="sr-only">E-Bulten</label>
+                        <input type="email" class="form-control" id="ebulten" placeholder="mail adresin">
+                    </div>
+                    <button type="submit" class="btn btn-dark mb-2">Login</button>
+                    </form>
+
+            </div>
+        </div>
+
+        <div class="row border-top mb-3"></div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h5 class="text-light">Man</h5>
+                <ul class="list-unstyled">
+                    {% for category in categories %}
+                    {% if category.gender == "man" or category.gender == "unisex" %}
+                    <li><a href="">{{category.title}}</a></li>
+                      {% endif %} 
+                    {% endfor %}  
+                  
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-light">Woman</h5>
+                <ul class="list-unstyled">
+                    {% for category in categories %}
+                    {% if category.gender == "woman" or category.gender == "unisex" %}
+                      <li><a href="">{{category.title}}</a></li>
+                      {% endif %} 
+                    {% endfor %}  
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-light">Always</h5>
+                <ul class="list-unstyled">
+                    {% for category in categories %}
+                      <li><a href="">{{category.title}}</a></li>
+                    {% endfor %}  
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-light">Information</h5>
+                <ul class="list-unstyled">
+                    {% for page in pages %}
+                      <li><a href="">{{page.title}}</a></li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

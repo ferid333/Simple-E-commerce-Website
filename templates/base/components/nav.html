@@ -1,0 +1,55 @@
+<div class="bg-dark">
+    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="{% url 'home' %}">Kaft</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="" aria-expanded="">
+                    Man
+                </a>
+                <div class="dropdown-menu " x-placement="bottom-start" >
+                  {% for category in categories %}
+                  {% if category.gender == "man" or category.gender == "unisex" %}
+                    <a class="dropdown-item" href="{% url 'show_category' category.slug %}">{{category.title}}</a>
+                    {% endif %} 
+                  {% endfor %}  
+                    
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="" aria-expanded="">
+                    Woman
+                </a>
+                <div class="dropdown-menu " x-placement="bottom-start" >
+                  {% for category in categories %}
+                  {% if category.gender == "woman" or category.gender == "unisex" %}
+                    <a class="dropdown-item" href="#">{{category.title}}</a>
+                    {% endif %} 
+                  {% endfor %}  
+                    
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="" aria-expanded="">
+                    Always
+                </a>
+                <div class="dropdown-menu " x-placement="bottom-start" >
+                  {% for category in categories %}
+                    <a class="dropdown-item" href="#">{{category.title}}</a>
+                  {% endfor %}  
+                </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <a class="btn btn-secondary my-2 my-sm-0" type="submit" href="{% url 'show_cart' %}"><i class="fa fa-shopping-cart" style="font-size:30px"></i></a>
+          </form>
+        </div>
+      </nav>
+
+    </div>
+</div>

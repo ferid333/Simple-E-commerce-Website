@@ -1,0 +1,25 @@
+<div class="card mb-3">
+  {% if item.cover_image %}
+   <img src="{{ item.cover_image.url }}" alt="Card image" class="w-100">
+  {% endif %}
+  <div class="card-body">
+    <p class="card-text">
+      {{ item.title }}
+    </p>
+  </div>
+  
+  <div class="card-body">
+    <span>${{ item.price }}</span>
+    {% if item  in showcart_items %}
+      <a href="{% url 'show_cart' %}" class="card-link float-right">Go Cart</a>
+    {% else %}
+      <a href="{% url 'add_item' item.id %}" class="card-link float-right add-cart" data="{{item.id}}">Add Cart</a>
+    {% endif %}
+    
+  </div>
+</div>
+
+
+
+
+      

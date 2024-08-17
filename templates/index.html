@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    {% include 'base/components/head.html' %}
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Index</title>
+</head>
+<body>
+{% include 'base/components/nav.html' %}
+    {% include 'home/carousel.html' %}
+    <div class="container mt-4">
+        <div class="row">
+            {% for item in products %}
+                <div class="col-sm-4">
+                {% include 'product/product.html' %}
+                </div> 
+            {% endfor %}
+        </div>   
+    </div>
+    {% include 'base/components/footer.html' %}
+    {% include 'base/components/footer_scripts.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || 
+                               ( typeof window.performance != "undefined" && 
+                                    window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+          window.location.reload();
+        }
+      });
+
+    
+</script>
+<script>
+$(document).on("click",".add-cart",function(e){
+    e.preventDefault();
+    id=e.target.getAttribute("data")
+    href=e.target.getAttribute("href")
+    if(href!="/showcart/"){
+        $.ajax({
+            type:"GET",
+            url:`/cart/add/${id}/`,
+            success: function(response){
+                e.target.textContent=response.message
+                e.target.setAttribute("href","/showcart/")
+            },
+            })        
+    }
+    else{
+        window.location.href = "http://127.0.0.1:8000/showcart/";
+    }
+})
+</script>
+</body>
+</html>

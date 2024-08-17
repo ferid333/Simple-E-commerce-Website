@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'base/components/head.html' %}
+    
+    <title>Kaft</title>
+</head>
+<body>
+    {% include 'base/components/nav.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'base/components/footer.html' %}
+    {% include 'base/components/footer_scripts.html' %}
+
+    {% block script %}
+    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).on("click",".add-cart",function(e){
+            e.preventDefault();
+            id=e.target.getAttribute("data")
+            href=e.target.getAttribute("href")
+            if(href!="/showcart/"){
+                $.ajax({
+                    type:"GET",
+                    url:`/cart/add/${id}/`,
+                    success: function(response){
+                        e.target.textContent=response.message
+                        e.target.setAttribute("href","/showcart/")
+                    },
+                    })        
+            }
+            else{
+                window.location.href = "http://127.0.0.1:8000/showcart/";
+            }
+        })
+        </script>   
+</body>
+</html>

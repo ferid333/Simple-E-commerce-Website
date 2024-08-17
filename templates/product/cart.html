@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+    {% if items %}
+            {% for item in items %}
+            <div class="d-flex mb-2">
+                <img src="{{item.cover_image.url}}" alt="#" class="card-img-left" style="width:200px">
+            <div class="card-body">
+                <p class="card-text" style="color:#000;font-size:2rem">
+                {{item.title}}
+                </p>
+                <a href="{% url 'delete_item' item.id %}" class="btn" style="background-color:orange;color:#fff;font-size:1rem;padding:0.3rem">Delete Item</a>
+            </div>
+            
+            <div class="card-body" style="color:#000;font-size:2rem">
+                Price:
+                <span>${{item.price}}</span>  
+            </div>
+            </div>
+        {% endfor %}
+            <div class="card mb-3">
+            <div class="card-body" style="color:#000;font-size:2rem">
+                Total Price:
+                <span yle="color:orange;font-size:2rem"> ${{shopcart.total_price}}</span>  
+                <a href="#" class="card-link float-right btn " style="background-color:orange;color:#fff;font-size:2rem;padding:1.5rem">Confirm Basket</a>
+            </div>
+            </div>
+    {% else %}
+    <div class="card mb-3">
+        <div class="card-body" style="color:#000;font-size:2rem">
+            You have nothing
+        </div>
+        </div>    
+    {% endif %}
+  
+</div>
+{% endblock %}
